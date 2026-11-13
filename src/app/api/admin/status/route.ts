@@ -3,20 +3,24 @@ import { getDatabaseDiagnostics } from '@/lib/db';
 
 export const dynamic = 'force-dynamic';
 
-async function pingEndpoint(url: string, timeoutMs = 3000): Promise<{ ok: boolean; status: number; latencyMs: number; error?: string }> {
+async function pingEndpoint(url: string, timeoutMs = 4000): Promise<{ ok: boolean; status: number; latencyMs: number; error?: string }> {
   const start = Date.now();
   try {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), timeoutMs);
 
     const res = await fetch(url, {
-      method: 'HEAD',
+      method: 'GET',
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Astronomia/1.0',
+        Range: 'bytes=0-200',
+      },
       signal: controller.signal,
     });
     clearTimeout(timer);
 
     return {
-      ok: res.ok,
+      ok: res.ok || res.status === 206 || res.status === 304,
       status: res.status,
       latencyMs: Date.now() - start,
     };
@@ -32,10 +36,10 @@ async function pingEndpoint(url: string, timeoutMs = 3000): Promise<{ ok: boolea
 
 export async function GET() {
   try {
-    const [apodStatus, nasaNewsRss, esaRss, nasaImages] = await Promise.all([
+    const [apodStatus, nasaNewsRss, nasaScienceFeed, nasaImages] = await Promise.all([
       pingEndpoint('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY'),
       pingEndpoint('https://www.nasa.gov/news-release/feed/'),
-      pingEndpoint('https://www.esa.int/rssfeed/Our_Activities/Space_Science'),
+      pingEndpoint('https://science.nasa.gov/feed/'),
       pingEndpoint('https://images-api.nasa.gov/search?q=earth&media_type=image&page_size=1'),
     ]);
 
@@ -56,10 +60,10 @@ export async function GET() {
           url: 'https://www.nasa.gov/news-release/feed/',
           ...nasaNewsRss,
         },
-        esaScienceRss: {
-          name: 'ESA Science Portal Feed',
-          url: 'https://www.esa.int/rssfeed/Our_Activities/Space_Science',
-          ...esaRss,
+        nasaScienceFeed: {
+          name: 'NASA Science Directorate Feed',
+          url: 'https://science.nasa.gov/feed/',
+          ...nasaScienceFeed,
         },
         nasaImagesApi: {
           name: 'NASA Image & Video Library',

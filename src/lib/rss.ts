@@ -15,9 +15,14 @@ const RSS_FEEDS = [
     defaultCategory: 'Space Exploration' as NewsCategory,
   },
   {
-    url: 'https://www.esa.int/rssfeed/Our_Activities/Space_Science',
-    sourceName: 'European Space Agency (ESA)',
-    defaultCategory: 'Astronomy' as NewsCategory,
+    url: 'https://science.nasa.gov/feed/',
+    sourceName: 'NASA Science Directorate',
+    defaultCategory: 'Discoveries' as NewsCategory,
+  },
+  {
+    url: 'https://spacenews.com/feed/',
+    sourceName: 'SpaceNews Global',
+    defaultCategory: 'Space Exploration' as NewsCategory,
   },
 ];
 

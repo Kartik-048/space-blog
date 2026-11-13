@@ -9,7 +9,15 @@ interface MaintenanceGuardProps {
 }
 
 export default function MaintenanceGuard({ children }: MaintenanceGuardProps) {
-  const [maintenanceMode, setMaintenanceMode] = useState<boolean>(false);
+  const [maintenanceMode, setMaintenanceMode] = useState<boolean>(() => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('astronomia_maintenance_mode');
+      const cookie = document.cookie.includes('astronomia_maintenance_mode=1');
+      return stored === '1' || cookie;
+    }
+    return false;
+  });
+
   const [maintenanceMessage, setMaintenanceMessage] = useState<string>(
     "Astronomia is currently under maintenance. We'll be back soon with your daily dose of space blogs!! "
   );
@@ -22,18 +30,31 @@ export default function MaintenanceGuard({ children }: MaintenanceGuardProps) {
       .then(res => res.json())
       .then(data => {
         if (data.success) {
-          setMaintenanceMode(Boolean(data.maintenanceMode));
+          const isOff = Boolean(data.maintenanceMode);
+          setMaintenanceMode(isOff);
+          if (typeof window !== 'undefined') {
+            localStorage.setItem('astronomia_maintenance_mode', isOff ? '1' : '0');
+            document.cookie = `astronomia_maintenance_mode=${isOff ? '1' : '0'}; path=/; max-age=31536000; SameSite=Lax`;
+          }
           if (data.maintenanceMessage) {
             setMaintenanceMessage(data.maintenanceMessage);
           }
         }
       })
-      .catch(() => {});
+      .catch(() => {
+        // Fallback to local storage if offline
+        if (typeof window !== 'undefined') {
+          const stored = localStorage.getItem('astronomia_maintenance_mode');
+          if (stored !== null) {
+            setMaintenanceMode(stored === '1');
+          }
+        }
+      });
   };
 
   useEffect(() => {
     checkMaintenance();
-    const interval = setInterval(checkMaintenance, 10000);
+    const interval = setInterval(checkMaintenance, 6000);
     return () => clearInterval(interval);
   }, []);
 
@@ -75,15 +96,15 @@ export default function MaintenanceGuard({ children }: MaintenanceGuardProps) {
           <span className="font-serif tracking-widest text-lg font-bold">ASTRONOMIA</span>
         </div>
 
-        <div className="flex items-center space-x-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-cosmic-gold">
+        <div className="flex items-center space-x-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-amber-400">
           <Radio className="w-3.5 h-3.5 animate-pulse" />
-          <span>STATUS: STANDBY MODE</span>
+          <span>STATUS: MAINTENANCE ACTIVE</span>
         </div>
       </div>
 
       {/* Center Notice Container */}
       <div className="max-w-2xl text-center space-y-6 relative z-10 my-auto py-12">
-        <div className="inline-flex p-3 rounded-2xl bg-cosmic-purple/20 border border-cosmic-purple/40 text-cosmic-purple shadow-glow-purple">
+        <div className="inline-flex p-3 rounded-2xl bg-amber-500/20 border border-amber-500/40 text-amber-400 shadow-lg shadow-amber-500/20">
           <ShieldAlert className="w-8 h-8 animate-pulse" />
         </div>
 
