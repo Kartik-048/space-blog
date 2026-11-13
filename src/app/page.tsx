@@ -98,6 +98,33 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* 3-BAR QUICK NAVIGATION SWITCHER */}
+      <div className="sticky top-20 z-30 my-6 bg-space-950/90 backdrop-blur-xl border border-white/10 rounded-2xl p-2 shadow-2xl flex items-center justify-between gap-2 overflow-x-auto scrollbar-none">
+        <a
+          href="#news"
+          className="flex-1 min-w-[130px] flex items-center justify-center space-x-2 py-2.5 px-3 rounded-xl bg-white/5 hover:bg-cosmic-cyan/15 border border-white/5 hover:border-cosmic-cyan/30 text-slate-200 hover:text-cosmic-cyan text-xs font-mono font-medium transition-all"
+        >
+          <Newspaper className="w-3.5 h-3.5 text-cosmic-cyan" />
+          <span>1. Space News</span>
+        </a>
+
+        <a
+          href="#gallery"
+          className="flex-1 min-w-[130px] flex items-center justify-center space-x-2 py-2.5 px-3 rounded-xl bg-white/5 hover:bg-cosmic-purple/15 border border-white/5 hover:border-cosmic-purple/30 text-slate-200 hover:text-cosmic-purple text-xs font-mono font-medium transition-all"
+        >
+          <ImageIcon className="w-3.5 h-3.5 text-cosmic-purple" />
+          <span>2. Photography</span>
+        </a>
+
+        <a
+          href="#discoveries"
+          className="flex-1 min-w-[130px] flex items-center justify-center space-x-2 py-2.5 px-3 rounded-xl bg-white/5 hover:bg-cosmic-gold/15 border border-white/5 hover:border-cosmic-gold/30 text-slate-200 hover:text-cosmic-gold text-xs font-mono font-medium transition-all"
+        >
+          <Compass className="w-3.5 h-3.5 text-cosmic-gold" />
+          <span>3. Discoveries & Facts</span>
+        </a>
+      </div>
+
       {/* 2. FEATURED ASTRONOMY EDITORIAL */}
       {primaryEditorial && (
         <section className="my-16 sm:my-20">
@@ -231,7 +258,9 @@ export default async function HomePage() {
       )}
 
       {/* 3. ASTRONOMY PICTURE OF THE DAY (APOD) */}
-      <ApodSection initialApod={apod} />
+      <div id="apod" className="scroll-mt-28">
+        <ApodSection initialApod={apod} />
+      </div>
 
       {/* 4. DAILY SPACE FACT OF THE DAY */}
       <section className="my-16 sm:my-20">
@@ -239,7 +268,7 @@ export default async function HomePage() {
       </section>
 
       {/* 5. LATEST SPACE NEWS (AUTOMATIC NASA/ESA FEED) */}
-      <section className="my-16 sm:my-20">
+      <section id="news" className="my-16 sm:my-20 scroll-mt-28">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
             <div className="flex items-center space-x-2 text-xs font-mono text-cosmic-cyan uppercase tracking-wider mb-1">
@@ -268,7 +297,7 @@ export default async function HomePage() {
       </section>
 
       {/* 6. FEATURED SPACE DISCOVERIES */}
-      <section className="my-16 sm:my-20">
+      <section id="discoveries" className="my-16 sm:my-20 scroll-mt-28">
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center space-x-2.5">
             <span className="p-1.5 rounded-lg bg-cosmic-gold/15 text-cosmic-gold border border-cosmic-gold/30">
@@ -342,7 +371,7 @@ export default async function HomePage() {
       </section>
 
       {/* 7. SPACE PHOTOGRAPHY GALLERY PREVIEW */}
-      <section className="my-16 sm:my-20">
+      <section id="gallery" className="my-16 sm:my-20 scroll-mt-28">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
             <div className="flex items-center space-x-2 text-xs font-mono text-cosmic-cyan uppercase tracking-wider mb-1">
