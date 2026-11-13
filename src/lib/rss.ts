@@ -1,6 +1,7 @@
 import { XMLParser } from 'fast-xml-parser';
 import { NewsCategory, NewsItem } from './types';
 import fallbackNews from '@/data/fallback-news.json';
+import { getDbNews, saveDbNews, saveDbConfig } from './db';
 
 const RSS_FEEDS = [
   {
@@ -193,9 +194,17 @@ export async function fetchSpaceNews(forceRefresh = false): Promise<NewsItem[]> 
     }
   }
 
-  // Merge with fallback curated news to ensure we always have rich, diverse articles
-  const mergedList: NewsItem[] = [...collectedArticles];
+  // Merge with local PC database archive and fallback news
+  const dbArchivedNews = getDbNews();
   const safeFallback = fallbackNews as unknown as NewsItem[];
+  const mergedList: NewsItem[] = [...collectedArticles];
+
+  for (const item of dbArchivedNews) {
+    if (!seenUrls.has(item.link)) {
+      seenUrls.add(item.link);
+      mergedList.push(item);
+    }
+  }
 
   for (const item of safeFallback) {
     if (!seenUrls.has(item.link)) {
@@ -206,6 +215,14 @@ export async function fetchSpaceNews(forceRefresh = false): Promise<NewsItem[]> 
 
   // Sort newest first
   mergedList.sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
+
+  // Save updated collection into local PC database
+  try {
+    saveDbNews(mergedList);
+    saveDbConfig({ lastSync: new Date().toISOString() });
+  } catch (err) {
+    console.error('Failed to save news to local PC database:', err);
+  }
 
   inMemoryNewsCache = {
     items: mergedList,

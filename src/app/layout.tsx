@@ -3,6 +3,7 @@ import './globals.css';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import Starfield from '@/components/Starfield';
+import MaintenanceGuard from '@/components/MaintenanceGuard';
 
 export const metadata: Metadata = {
   title: 'ASTRONOMIA — Space & Deep Cosmos Review',
@@ -66,16 +67,19 @@ export default function RootLayout({
         {/* Ambient background glow layers */}
         <div className="fixed inset-0 bg-nebula-gradient pointer-events-none z-0 opacity-40" />
 
-        {/* Global Navigation */}
-        <Navigation />
+        {/* Maintenance Mode Guard with Emergency Overhaul */}
+        <MaintenanceGuard>
+          {/* Global Navigation */}
+          <Navigation />
 
-        {/* Main Content Area */}
-        <main className="flex-1 relative z-10 pt-20">
-          {children}
-        </main>
+          {/* Main Content Area */}
+          <main className="flex-1 relative z-10 pt-20">
+            {children}
+          </main>
 
-        {/* Global Footer */}
-        <Footer />
+          {/* Global Footer */}
+          <Footer />
+        </MaintenanceGuard>
       </body>
     </html>
   );
