@@ -236,3 +236,35 @@ export async function fetchSpaceNews(forceRefresh = false): Promise<NewsItem[]> 
 
   return mergedList;
 }
+
+/**
+ * Catch-up sync triggered after site turns back on:
+ * Compares latest feed items against the date/time before site was turned off,
+ * isolates the newer articles, updates the database, and returns the catchup metrics.
+ */
+export async function syncNewsCatchup(sinceDateIso?: string | null): Promise<{
+  allNews: NewsItem[];
+  newArticlesCount: number;
+  newArticles: NewsItem[];
+  cutoffDate: string;
+}> {
+  // 1. Force a live fetch from all NASA & Space feeds
+  const freshlyFetched = await fetchSpaceNews(true);
+
+  // 2. Determine cutoff timestamp
+  const cutoffTime = sinceDateIso ? new Date(sinceDateIso).getTime() : 0;
+
+  // 3. Find articles strictly newer than the cutoff timestamp
+  const newArticles = freshlyFetched.filter(item => {
+    const itemTime = new Date(item.pubDate).getTime();
+    return itemTime > cutoffTime;
+  });
+
+  return {
+    allNews: freshlyFetched,
+    newArticlesCount: newArticles.length,
+    newArticles,
+    cutoffDate: sinceDateIso || (freshlyFetched[0] ? freshlyFetched[0].pubDate : new Date().toISOString()),
+  };
+}
+

@@ -54,8 +54,20 @@ export default function MaintenanceGuard({ children }: MaintenanceGuardProps) {
 
   useEffect(() => {
     checkMaintenance();
-    const interval = setInterval(checkMaintenance, 6000);
-    return () => clearInterval(interval);
+
+    const handleCustomChange = (e: any) => {
+      if (e.detail && typeof e.detail.maintenanceMode === 'boolean') {
+        setMaintenanceMode(e.detail.maintenanceMode);
+      }
+    };
+
+    window.addEventListener('astronomia_maintenance_change', handleCustomChange);
+    const interval = setInterval(checkMaintenance, 5000);
+
+    return () => {
+      window.removeEventListener('astronomia_maintenance_change', handleCustomChange);
+      clearInterval(interval);
+    };
   }, []);
 
   const handleTelescopeClick = () => {

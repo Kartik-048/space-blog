@@ -20,6 +20,10 @@ import {
   Lock,
   Unlock,
   Radio,
+  Clock,
+  Sparkles,
+  History,
+  Check,
 } from 'lucide-react';
 import { Article } from '@/lib/types';
 
@@ -48,6 +52,10 @@ export default function AdminPanelModal({ isOpen, onClose }: AdminPanelModalProp
   const [maintenanceMsg, setMaintenanceMsg] = useState(
     "Astronomia is currently under maintenance. We'll be back soon with your daily dose of space blogs!! "
   );
+  const [reconnectionReport, setReconnectionReport] = useState<any>(null);
+  const [turnedOffAt, setTurnedOffAt] = useState<string | null>(null);
+  const [lastNewsDateBeforeOff, setLastNewsDateBeforeOff] = useState<string | null>(null);
+  const [statusNotification, setStatusNotification] = useState<string | null>(null);
 
   // Articles & Sync State
   const [isSyncing, setIsSyncing] = useState(false);
@@ -79,13 +87,16 @@ export default function AdminPanelModal({ isOpen, onClose }: AdminPanelModalProp
   }, [isOpen]);
 
   const loadAdminData = () => {
-    // Load maintenance state
+    // Load maintenance state & catch-up report
     fetch('/api/admin/maintenance')
       .then(res => res.json())
       .then(data => {
         if (data.success) {
           setMaintenanceMode(Boolean(data.maintenanceMode));
           if (data.maintenanceMessage) setMaintenanceMsg(data.maintenanceMessage);
+          if (data.lastReconnectionReport) setReconnectionReport(data.lastReconnectionReport);
+          if (data.turnedOffAt) setTurnedOffAt(data.turnedOffAt);
+          if (data.lastNewsDateBeforeOff) setLastNewsDateBeforeOff(data.lastNewsDateBeforeOff);
         }
       })
       .catch(() => {});
@@ -145,6 +156,7 @@ export default function AdminPanelModal({ isOpen, onClose }: AdminPanelModalProp
 
   const handleToggleMaintenance = async () => {
     setMaintenanceLoading(true);
+    setStatusNotification(null);
     const targetMode = !maintenanceMode;
     try {
       const res = await fetch('/api/admin/maintenance', {
@@ -157,7 +169,51 @@ export default function AdminPanelModal({ isOpen, onClose }: AdminPanelModalProp
       });
       const data = await res.json();
       if (data.success) {
-        setMaintenanceMode(Boolean(data.maintenanceMode));
+        const isOff = Boolean(data.maintenanceMode);
+        setMaintenanceMode(isOff);
+
+        // Immediate client-side propagation to cookies & storage
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('astronomia_maintenance_mode', isOff ? '1' : '0');
+          document.cookie = `astronomia_maintenance_mode=${isOff ? '1' : '0'}; path=/; max-age=${isOff ? '31536000' : '0'}; SameSite=Lax`;
+          window.dispatchEvent(
+            new CustomEvent('astronomia_maintenance_change', {
+              detail: {
+                maintenanceMode: isOff,
+                report: data.reconnectionReport,
+              },
+            })
+          );
+        }
+
+        if (data.reconnectionReport) {
+          setReconnectionReport(data.reconnectionReport);
+        }
+        if (data.turnedOffAt) {
+          setTurnedOffAt(data.turnedOffAt);
+        } else {
+          setTurnedOffAt(null);
+        }
+        if (data.lastNewsDateBeforeOff) {
+          setLastNewsDateBeforeOff(data.lastNewsDateBeforeOff);
+        }
+
+        if (isOff) {
+          setStatusNotification('🌑 Site is now turned OFF. Maintenance blackout is ACTIVE.');
+          // Auto close modal after 1.5s so user immediately sees the maintenance blackout screen
+          setTimeout(() => {
+            onClose();
+          }, 1500);
+        } else {
+          const report = data.reconnectionReport;
+          const msg = report
+            ? `☀️ Site is back ONLINE! Offline for ${report.offlineDurationFormatted}. Synced ${report.newArticlesSynced} new articles published since shutdown!`
+            : '☀️ Site is now LIVE and fully accessible!';
+          setStatusNotification(msg);
+          loadDiagnostics();
+        }
+      } else {
+        alert('Error updating site status: ' + (data.error || 'Server error'));
       }
     } catch (e: any) {
       alert('Error updating maintenance mode: ' + e.message);
@@ -406,6 +462,13 @@ export default function AdminPanelModal({ isOpen, onClose }: AdminPanelModalProp
               {/* TAB 1: SITE POWER / MAINTENANCE SWITCH */}
               {activeTab === 'maintenance' && (
                 <div className="space-y-6">
+                  {statusNotification && (
+                    <div className="p-4 rounded-2xl bg-cosmic-cyan/15 border border-cosmic-cyan/40 text-xs font-mono text-cyan-200 flex items-center space-x-2 animate-in fade-in">
+                      <Sparkles className="w-4 h-4 text-cosmic-cyan shrink-0" />
+                      <span>{statusNotification}</span>
+                    </div>
+                  )}
+
                   {/* Maintenance Mode Card */}
                   <div
                     className={`p-6 rounded-3xl border transition-all ${
@@ -447,6 +510,69 @@ export default function AdminPanelModal({ isOpen, onClose }: AdminPanelModalProp
                         <span>{maintenanceMode ? 'TURN SITE BACK ON' : 'TURN SITE OFF NOW'}</span>
                       </button>
                     </div>
+                  </div>
+
+                  {/* Automatic Reconnection & Time-Difference Engine */}
+                  <div className="p-5 rounded-2xl bg-space-950/80 border border-cosmic-purple/30 space-y-3">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-2">
+                        <Clock className="w-4 h-4 text-cosmic-purple" />
+                        <span className="text-xs font-mono text-cosmic-purple font-bold uppercase tracking-wider">
+                          Time-Delta Reconnection & Catch-Up Engine
+                        </span>
+                      </div>
+                      <span className="px-2 py-0.5 rounded-full bg-cosmic-purple/15 text-cosmic-purple text-[10px] font-mono border border-cosmic-purple/30">
+                        AUTOMATIC SYNC
+                      </span>
+                    </div>
+
+                    {maintenanceMode ? (
+                      <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-300 font-mono space-y-1">
+                        <div className="font-bold flex items-center space-x-1.5">
+                          <History className="w-3.5 h-3.5 text-amber-400" />
+                          <span>STANDBY MODE: TIME-DELTA ARMED</span>
+                        </div>
+                        <p className="text-[11px] text-slate-300">
+                          Turned off at: <span className="text-white font-bold">{turnedOffAt ? new Date(turnedOffAt).toLocaleString() : 'Just now'}</span>
+                        </p>
+                        <p className="text-[11px] text-slate-300">
+                          Last news publication baseline: <span className="text-cosmic-cyan font-bold">{lastNewsDateBeforeOff ? new Date(lastNewsDateBeforeOff).toLocaleString() : 'Saved in database'}</span>
+                        </p>
+                        <p className="text-[10px] text-slate-400 italic pt-1">
+                          💡 When you click &quot;TURN SITE BACK ON&quot;, Astronomia will calculate the exact hours/minutes the site was offline and automatically fetch all space news published during that window!
+                        </p>
+                      </div>
+                    ) : reconnectionReport ? (
+                      <div className="p-3 rounded-xl bg-cosmic-purple/10 border border-cosmic-purple/20 text-xs text-slate-300 font-mono space-y-1.5">
+                        <div className="flex items-center justify-between">
+                          <span className="font-bold text-white flex items-center space-x-1.5">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                            <span>Latest Catch-Up Audit Report</span>
+                          </span>
+                          <span className="text-[10px] text-slate-400">
+                            {new Date(reconnectionReport.reconnectedAt).toLocaleTimeString()}
+                          </span>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1 text-[11px]">
+                          <div className="p-2 rounded-lg bg-black/40 border border-white/5">
+                            <span className="text-slate-400 block text-[10px]">Offline Window:</span>
+                            <span className="text-cosmic-cyan font-bold">{reconnectionReport.offlineDurationFormatted || 'Brief'}</span>
+                          </div>
+                          <div className="p-2 rounded-lg bg-black/40 border border-white/5">
+                            <span className="text-slate-400 block text-[10px]">News Caught Up:</span>
+                            <span className="text-emerald-400 font-bold">+{reconnectionReport.newArticlesSynced} new stories</span>
+                          </div>
+                          <div className="p-2 rounded-lg bg-black/40 border border-white/5">
+                            <span className="text-slate-400 block text-[10px]">Total in Archive:</span>
+                            <span className="text-white font-bold">{reconnectionReport.totalArticlesInDb} articles</span>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <p className="text-xs text-slate-400 font-mono">
+                        Ready on standby. Turning off the site will log the exact shutdown time. Turning it back on will automatically scan all NASA feeds for news published in the interim and backfill your archive.
+                      </p>
+                    )}
                   </div>
 
                   {/* Message Preview */}

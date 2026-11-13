@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { fetchSpaceNews } from '@/lib/rss';
+import { getDbConfig } from '@/lib/db';
 import { NewsCategory } from '@/lib/types';
 
 export const dynamic = 'force-dynamic';
@@ -15,6 +16,7 @@ export async function GET(request: Request) {
     const forceRefresh = searchParams.get('refresh') === 'true';
 
     let news = await fetchSpaceNews(forceRefresh);
+    const dbConfig = getDbConfig();
 
     // Filter by category
     if (category && category !== 'All') {
@@ -38,6 +40,7 @@ export async function GET(request: Request) {
     return NextResponse.json({
       success: true,
       data: paginatedItems,
+      reconnectionReport: dbConfig.lastReconnectionReport,
       pagination: {
         page,
         limit,

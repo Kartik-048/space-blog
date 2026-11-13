@@ -24,6 +24,7 @@ export default function SpaceNewsPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [refreshSuccess, setRefreshSuccess] = useState(false);
+  const [reconnectionReport, setReconnectionReport] = useState<any>(null);
 
   const loadNews = async (forceRefresh = false) => {
     if (forceRefresh) setIsRefreshing(true);
@@ -36,6 +37,9 @@ export default function SpaceNewsPage() {
         const json = await res.json();
         if (json.data) {
           setNews(json.data);
+          if (json.reconnectionReport) {
+            setReconnectionReport(json.reconnectionReport);
+          }
           if (forceRefresh) {
             setRefreshSuccess(true);
             setTimeout(() => setRefreshSuccess(false), 3000);
@@ -88,6 +92,32 @@ export default function SpaceNewsPage() {
           Continuously synthesized from official NASA news releases, the European Space Agency (ESA), and international space agencies. Free from algorithmic noise, verified by primary sources.
         </p>
       </div>
+
+      {/* Reconnection Catch-up Notification Banner */}
+      {reconnectionReport && (
+        <div className="mb-8 p-4 rounded-2xl bg-cosmic-purple/15 border border-cosmic-purple/30 text-xs font-mono text-slate-300 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-glow-purple animate-in fade-in">
+          <div className="flex items-center space-x-3">
+            <div className="p-2 rounded-xl bg-cosmic-purple/20 text-cosmic-purple shrink-0">
+              <Sparkles className="w-4 h-4 animate-spin" />
+            </div>
+            <div>
+              <div className="font-bold text-white flex items-center space-x-2">
+                <span>RECONNECTION CATCH-UP SYNCHRONIZED</span>
+                <span className="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px]">
+                  ARCHIVE UPDATED
+                </span>
+              </div>
+              <p className="text-slate-300 text-[11px] mt-0.5">
+                Site offline duration: <span className="text-cosmic-cyan font-bold">{reconnectionReport.offlineDurationFormatted || 'recent shutdown'}</span>.
+                Scanned for new cosmic dispatches published since {reconnectionReport.lastNewsDateBeforeOff ? new Date(reconnectionReport.lastNewsDateBeforeOff).toLocaleString() : 'prior period'} and merged <span className="text-emerald-400 font-bold">+{reconnectionReport.newArticlesSynced} new articles</span> into your database.
+              </p>
+            </div>
+          </div>
+          <span className="text-[10px] text-slate-400 shrink-0">
+            Reconnected: {new Date(reconnectionReport.reconnectedAt).toLocaleTimeString()}
+          </span>
+        </div>
+      )}
 
       {/* Control Bar: Categories, Search, Sort & Refresh */}
       <div className="bg-space-900/90 border border-white/10 rounded-2xl p-4 sm:p-5 mb-8 shadow-xl space-y-4">
