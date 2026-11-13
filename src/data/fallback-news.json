@@ -1,0 +1,74 @@
+[
+  {
+    "id": "nasa-news-1",
+    "title": "NASA's Europa Clipper Spacecraft Heads Toward Jupiter's Ocean Moon",
+    "link": "https://www.nasa.gov/news-release/nasas-europa-clipper-spacecraft-launches-toward-jupiters-ocean-moon/",
+    "pubDate": "2024-10-14T16:06:00Z",
+    "source": "NASA Press Release",
+    "author": "NASA Media Operations",
+    "summary": "NASA's Europa Clipper has embarked on its long journey to Jupiter's icy moon Europa. The spacecraft will investigate whether Europa has conditions below its icy crust that could support life.",
+    "thumbnail": "https://images-assets.nasa.gov/image/PIA26398/PIA26398~orig.jpg",
+    "category": "Missions",
+    "tags": ["Europa", "Jupiter", "Astrobiology", "NASA"]
+  },
+  {
+    "id": "nasa-news-2",
+    "title": "James Webb Space Telescope Identifies Coldest Interstellar Ice Yet Observed",
+    "link": "https://www.nasa.gov/missions/webb/webb-unveils-deepest-inventory-of-interstellar-ices/",
+    "pubDate": "2024-09-22T14:30:00Z",
+    "source": "NASA Webb Team",
+    "author": "Space Telescope Science Institute",
+    "summary": "Using its sensitive infrared spectrographs, NASA's James Webb Space Telescope has probed the dark molecular cloud Chameleon I, inventorying frozen molecules essential for prebiotic chemistry.",
+    "thumbnail": "https://images-assets.nasa.gov/image/PIA25328/PIA25328~orig.jpg",
+    "category": "Astronomy",
+    "tags": ["JWST", "Infrared", "Prebiotic", "Deep Space"]
+  },
+  {
+    "id": "nasa-news-3",
+    "title": "NASA's Perseverance Rover Analyzes Enigmatic 'Cheyava Falls' Rock on Mars",
+    "link": "https://www.nasa.gov/missions/perseverance/nasas-perseverance-rover-scientists-find-intriguing-mars-rock/",
+    "pubDate": "2024-07-25T17:00:00Z",
+    "source": "NASA JPL",
+    "author": "Jet Propulsion Laboratory",
+    "summary": "NASA's Perseverance Mars rover has discovered an arrow-shaped rock containing leopard-like spots and chemical signatures that may point to ancient microscopic life on the Red Planet billions of years ago.",
+    "thumbnail": "https://images-assets.nasa.gov/image/PIA25686/PIA25686~orig.jpg",
+    "category": "Space Exploration",
+    "tags": ["Mars", "Perseverance", "Biosignatures", "JPL"]
+  },
+  {
+    "id": "nasa-news-4",
+    "title": "Hubble Captures Spectacular Stellar Fireworks in Spiral Galaxy NGC 4423",
+    "link": "https://www.nasa.gov/image-article/hubble-captures-spiral-galaxy-edge-on/",
+    "pubDate": "2024-08-11T12:00:00Z",
+    "source": "NASA Hubble",
+    "author": "Goddard Space Flight Center",
+    "summary": "The NASA/ESA Hubble Space Telescope viewed galaxy NGC 4423 edge-on from a distance of 55 million light-years in the constellation Virgo, displaying brilliant dust lanes and active star-forming regions.",
+    "thumbnail": "https://images-assets.nasa.gov/image/PIA22088/PIA22088~orig.jpg",
+    "category": "Galaxies",
+    "tags": ["Hubble", "Galaxies", "Stars", "Cosmology"]
+  },
+  {
+    "id": "nasa-news-5",
+    "title": "SpaceX Starship Flight 5 Successfully Catches Super Heavy Booster at Launch Pad",
+    "link": "https://www.spacex.com/launches/mission/?missionId=starship-flight-5",
+    "pubDate": "2024-10-13T13:25:00Z",
+    "source": "Spaceflight News",
+    "author": "Aerospace Reporting",
+    "summary": "In an unprecedented aerospace engineering milestone, the Super Heavy booster completed a controlled return to Starbase and was captured mid-air by the launch tower's mechanical arms ('chopsticks').",
+    "thumbnail": "https://images-assets.nasa.gov/image/PIA25501/PIA25501~orig.jpg",
+    "category": "SpaceX",
+    "tags": ["SpaceX", "Starship", "Engineering", "Booster"]
+  },
+  {
+    "id": "nasa-news-6",
+    "title": "NASA's Roman Space Telescope Coronagraph Instrument Delivered to Goddard",
+    "link": "https://www.nasa.gov/missions/roman-space-telescope/coronagraph-instrument-delivered/",
+    "pubDate": "2024-06-18T15:00:00Z",
+    "source": "NASA Roman Mission",
+    "author": "NASA GSFC",
+    "summary": "The Nancy Grace Roman Space Telescope will carry an ultra-advanced starlight suppression coronagraph, capable of directly imaging giant exoplanets by blocking the blinding glare of their host stars by a factor of 100 million.",
+    "thumbnail": "https://images-assets.nasa.gov/image/PIA23122/PIA23122~orig.jpg",
+    "category": "Discoveries",
+    "tags": ["Roman Telescope", "Exoplanets", "Direct Imaging", "NASA"]
+  }
+]

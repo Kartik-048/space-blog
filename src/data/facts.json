@@ -1,0 +1,137 @@
+[
+  {
+    "id": "fact-1",
+    "topic": "Black Holes",
+    "title": "Time Dilation at the Event Horizon",
+    "fact": "Because of extreme gravitational time dilation predicted by Einstein's General Relativity, if an observer watches an object fall toward a black hole's event horizon, the object appears to slow down indefinitely and fade away as its light is gravitationally redshifted to infinite wavelengths, never actually being seen crossing the horizon by the outside observer.",
+    "category": "Astrophysics",
+    "source": "NASA Astrophysics / General Relativity",
+    "tags": ["Black Holes", "Relativity", "Gravity"]
+  },
+  {
+    "id": "fact-2",
+    "topic": "Neutron Stars",
+    "title": "A Teaspoon Weighs Billions of Tons",
+    "fact": "Neutron stars are so dense that atomic electron clouds collapse, packing roughly 1.4 to 2.1 solar masses into a sphere only 20 kilometers (12 miles) in diameter. A single teaspoon of neutron star crust material would weigh approximately 6 billion tons on Earth—comparable to the weight of Mount Everest.",
+    "category": "Stellar Evolution",
+    "source": "NASA Goddard Space Flight Center",
+    "tags": ["Neutron Stars", "Density", "Supernovae"]
+  },
+  {
+    "id": "fact-3",
+    "topic": "The Solar System",
+    "title": "Olympus Mons: The Volcano That Reaches Space",
+    "fact": "Mars hosts the largest volcano in the Solar System, Olympus Mons. Standing at approximately 21.9 km (13.6 mi; 72,000 ft) high, it is roughly two and a half times the height of Mount Everest above sea level and spans over 600 kilometers in diameter—wide enough to cover the entire state of Arizona.",
+    "category": "Planetary Science",
+    "source": "NASA Jet Propulsion Laboratory (JPL)",
+    "tags": ["Mars", "Volcanoes", "Solar System"]
+  },
+  {
+    "id": "fact-4",
+    "topic": "Galaxies",
+    "title": "The Cosmic Collision With Andromeda",
+    "fact": "The Andromeda Galaxy (M31) is hurtling toward our Milky Way at approximately 110 kilometers per second (68 miles/sec). In roughly 4.5 billion years, the two giant galaxies will collide and merge into a single giant elliptical galaxy, often nicknamed 'Milkomeda'. Because stellar distances are vast, individual stars will virtually never collide.",
+    "category": "Galaxies",
+    "source": "Space Telescope Science Institute (STScI)",
+    "tags": ["Milky Way", "Andromeda", "Cosmology"]
+  },
+  {
+    "id": "fact-5",
+    "topic": "Exoplanets",
+    "title": "The Planet Where It Rains Molten Iron",
+    "fact": "On ultra-hot Jupiter WASP-76b, daytime temperatures exceed 2,400°C (4,350°F), vaporizing metallic iron into the atmosphere. Violent planetary winds sweep the vaporized iron to the cooler nighttime hemisphere (around 1,500°C), where it condenses and rains down as liquid iron droplets.",
+    "category": "Exoplanets",
+    "source": "European Southern Observatory (ESO) / Nature",
+    "tags": ["Exoplanets", "Atmospheres", "Extreme Worlds"]
+  },
+  {
+    "id": "fact-6",
+    "topic": "Space Exploration",
+    "title": "Voyager 1: Farthest Human Artifact",
+    "fact": "Launched in 1977, Voyager 1 crossed the heliopause in August 2012 at roughly 121 astronomical units from the Sun, becoming the first human-made craft to enter interstellar space. Traveling at approximately 38,000 mph (61,000 km/h), its radio signal now takes over 22.5 hours each way to travel between the probe and Earth.",
+    "category": "Space Exploration",
+    "source": "NASA Voyager Project / JPL",
+    "tags": ["Voyager", "Interstellar", "Deep Space"]
+  },
+  {
+    "id": "fact-7",
+    "topic": "The Observable Universe",
+    "title": "The Cosmic Microwave Background Baby Picture",
+    "fact": "The Cosmic Microwave Background (CMB) is the thermal echo of the Big Bang, dating to 380,000 years after the universe began when neutral hydrogen atoms first formed (recombination) and photons decoupled from matter. The radiation has cooled to just 2.725 Kelvin (-270.4°C) across the entire sky.",
+    "category": "Cosmology",
+    "source": "ESA Planck Mission / NASA WMAP",
+    "tags": ["Big Bang", "CMB", "Cosmology"]
+  },
+  {
+    "id": "fact-8",
+    "topic": "Neutron Stars",
+    "title": "Magnetars: The Universe's Strongest Magnets",
+    "fact": "Magnetars possess magnetic fields measuring upwards of 10^11 to 10^12 Tesla—over a quadrillion times stronger than Earth's magnetic field. A magnetar at a distance of 1,000 kilometers would literally dissolve the electron orbitals of atoms in human tissue, destroying atomic molecular bonds instantly.",
+    "category": "Astrophysics",
+    "source": "NASA Chandra X-ray Observatory",
+    "tags": ["Magnetars", "Magnetic Fields", "Extreme Physics"]
+  },
+  {
+    "id": "fact-9",
+    "topic": "The Solar System",
+    "title": "Europa's Hidden Global Ocean",
+    "fact": "Jupiter's moon Europa harbors a saltwater ocean beneath its outer ice shell that is estimated to be 60 to 150 kilometers deep. Despite Europa being smaller than Earth's Moon, its subterranean ocean is believed to hold more than twice the volume of all of Earth's oceans combined.",
+    "category": "Astrobiology",
+    "source": "NASA Europa Clipper Mission",
+    "tags": ["Europa", "Jupiter", "Oceans", "Astrobiology"]
+  },
+  {
+    "id": "fact-10",
+    "topic": "Black Holes",
+    "title": "Sagittarius A*: The Anchor of Our Galaxy",
+    "fact": "At the gravitational center of the Milky Way lies Sagittarius A*, a supermassive black hole containing approximately 4.15 million times the mass of our Sun. In 2022, the Event Horizon Telescope Collaboration captured the first direct silhouette image of its glowing accretion ring.",
+    "category": "Black Holes",
+    "source": "Event Horizon Telescope (EHT) Collaboration",
+    "tags": ["Sagittarius A*", "Milky Way", "EHT"]
+  },
+  {
+    "id": "fact-11",
+    "topic": "Astrophysics",
+    "title": "Gravitational Lensing: Nature's Cosmic Telescopes",
+    "fact": "Massive galaxy clusters warp the fabric of spacetime so severely that light from background galaxies bends around them, producing magnified, distorted rings and arcs known as Einstein Rings. Astronomers use these cosmic lenses to observe primordial galaxies from when the universe was only 3% of its current age.",
+    "category": "Cosmology",
+    "source": "NASA Hubble & JWST",
+    "tags": ["Gravitational Lensing", "JWST", "Spacetime"]
+  },
+  {
+    "id": "fact-12",
+    "topic": "Space Exploration",
+    "title": "James Webb's Gravitational Balance Point",
+    "fact": "The James Webb Space Telescope does not orbit Earth; it orbits the Sun at the Second Lagrange Point (L2), approximately 1.5 million kilometers (930,000 miles) directly behind Earth. This location keeps the Sun, Earth, and Moon aligned behind its tennis-court-sized sunshield, keeping instruments cooled to -233°C (-388°F).",
+    "category": "Space Exploration",
+    "source": "NASA / ESA / CSA JWST Mission",
+    "tags": ["JWST", "Lagrange Point", "Infrared"]
+  },
+  {
+    "id": "fact-13",
+    "topic": "The Solar System",
+    "title": "Saturn's Rings are Geologically Young",
+    "fact": "Measurements from the Cassini spacecraft revealed that Saturn's dazzling ring system is likely only 10 to 100 million years old—meaning dinosaurs walked the Earth before Saturn had its iconic rings. Furthermore, ring rain is draining ice into Saturn's atmosphere at a rate that could erase them in 300 million years.",
+    "category": "Planetary Science",
+    "source": "NASA Cassini-Huygens Mission",
+    "tags": ["Saturn", "Rings", "Cassini"]
+  },
+  {
+    "id": "fact-14",
+    "topic": "Exoplanets",
+    "title": "TRAPPIST-1: Seven Earth-Sized Siblings",
+    "fact": "Located 40 light-years away, TRAPPIST-1 is an ultracool dwarf star orbited by seven rocky, Earth-sized planets packed closer to their star than Mercury is to the Sun. Three of these worlds reside in the habitable zone where liquid surface water could potentially exist.",
+    "category": "Exoplanets",
+    "source": "NASA Spitzer & Kepler Missions",
+    "tags": ["TRAPPIST-1", "Habitable Zone", "Rocky Planets"]
+  },
+  {
+    "id": "fact-15",
+    "topic": "Astrophysics",
+    "title": "Stellar Nucleosynthesis: We Are Stardust",
+    "fact": "Every element in the periodic table heavier than helium and lithium was forged in the nuclear cores of ancient stars or during violent supernova explosions and neutron star collisions. The iron in your blood, calcium in your bones, and gold in jewelry originated inside dying stars billions of years ago.",
+    "category": "Astrophysics",
+    "source": "Carl Sagan / NASA Cosmic Origins",
+    "tags": ["Nucleosynthesis", "Stars", "Elements"]
+  }
+]

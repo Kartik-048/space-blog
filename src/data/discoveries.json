@@ -1,0 +1,82 @@
+[
+  {
+    "id": "discovery-1",
+    "slug": "jwst-first-deep-field-smacs-0723",
+    "title": "JWST's First Deep Field: Unveiling the Primordial Universe",
+    "summary": "The James Webb Space Telescope delivered the deepest, sharpest infrared image of the distant universe to date, showing galaxy cluster SMACS 0723 acting as a gravitational lens to magnify galaxies formed over 13.1 billion years ago.",
+    "category": "Galaxies & Deep Space",
+    "date": "2022-07-12",
+    "facility": "James Webb Space Telescope (NASA/ESA/CSA)",
+    "imageUrl": "https://images-assets.nasa.gov/image/PIA25328/PIA25328~orig.jpg",
+    "significance": "Revealed ancient star clusters and glowing gravitational arcs with unprecedented chemical signatures, revising astrophysical models of early galactic assembly.",
+    "keyTakeaways": [
+      "Gravitational lensing magnified faint background galaxies by factors of tens to hundreds.",
+      "Identified oxygen and hydrogen emission spectra from galaxies when the cosmos was under 600 million years old.",
+      "Demonstrated the flawless alignment of Webb's 18 beryllium gold-coated hexagonal mirrors."
+    ]
+  },
+  {
+    "id": "discovery-2",
+    "slug": "ligo-first-gravitational-wave-detection",
+    "title": "LIGO's First Detection of Gravitational Waves (GW150914)",
+    "summary": "On September 14, 2015, the Laser Interferometer Gravitational-Wave Observatory detected ripples in the fabric of spacetime produced by the merger of two stellar-mass black holes 1.3 billion light-years away.",
+    "category": "Astrophysics",
+    "date": "2016-02-11",
+    "facility": "LIGO / Virgo Collaborations",
+    "imageUrl": "https://images-assets.nasa.gov/image/PIA20054/PIA20054~orig.jpg",
+    "significance": "Confirmed Albert Einstein's 1916 prediction of gravitational waves and launched gravitational-wave astronomy—giving humanity a new cosmic sense beyond light.",
+    "keyTakeaways": [
+      "Detected laser beam phase shifts smaller than one ten-thousandth the diameter of a proton.",
+      "The two black holes (29 and 36 solar masses) converted 3 solar masses of pure energy into spacetime waves in fractions of a second.",
+      "Awarded the 2017 Nobel Prize in Physics."
+    ]
+  },
+  {
+    "id": "discovery-3",
+    "slug": "eht-first-image-black-hole-m87",
+    "title": "Event Horizon Telescope: First Direct Image of a Black Hole",
+    "summary": "A global array of synchronized radio telescopes combined through Very Long Baseline Interferometry created an Earth-sized virtual telescope, capturing the glowing silhouette of the supermassive black hole at the core of galaxy Messier 87.",
+    "category": "Black Holes",
+    "date": "2019-04-10",
+    "facility": "Event Horizon Telescope (EHT)",
+    "imageUrl": "https://images-assets.nasa.gov/image/PIA23122/PIA23122~orig.jpg",
+    "significance": "Direct observational proof of an event horizon: a shadow 2.6 times the Schwarzschild radius enveloped by superheated plasma orbiting at near the speed of light.",
+    "keyTakeaways": [
+      "M87* contains approximately 6.5 billion times the mass of the Sun.",
+      "Data synchronized across observatories in Hawaii, Chile, Spain, and the South Pole via atomic clocks.",
+      "Matched General Relativistic magnetohydrodynamic simulations with extraordinary fidelity."
+    ]
+  },
+  {
+    "id": "discovery-4",
+    "slug": "perseverance-jezero-crater-delta-biosignatures",
+    "title": "Perseverance Rover: Organic Molecules in Ancient Jezero Delta",
+    "summary": "NASA's Mars 2020 Perseverance rover confirmed ancient lakebed delta sediments in Jezero Crater and sampled sedimentary rock cores rich in aromatic organic molecules and carbonate minerals.",
+    "category": "Astrobiology",
+    "date": "2023-09-15",
+    "facility": "Perseverance Rover / NASA JPL",
+    "imageUrl": "https://images-assets.nasa.gov/image/PIA25686/PIA25686~orig.jpg",
+    "significance": "Demonstrates that billions of years ago, Jezero Crater had a sustained aqueous environment with conditions conducive to microbial life, preparing samples for Mars Sample Return.",
+    "keyTakeaways": [
+      "SHERLOC and PIXL spectrometers mapped spatial correlations of organics and sulfate salts.",
+      "Confirmed water flowed into the crater through ancient river valleys roughly 3.5 billion years ago.",
+      "Hermetically sealed titanium sample tubes deposited for future Earth retrieval."
+    ]
+  },
+  {
+    "id": "discovery-5",
+    "slug": "d然-planetary-defense-dart-asteroid-deflection",
+    "title": "DART Mission: Humanity's First Asteroid Deflection Test",
+    "summary": "NASA's Double Asteroid Redirection Test intentionally impacted the asteroid moonlet Dimorphos at 14,000 mph (22,500 km/h), altering its orbital period around Didymos by 33 minutes.",
+    "category": "Space Exploration",
+    "date": "2022-10-11",
+    "facility": "NASA Planetary Defense Coordination Office / JHUAPL",
+    "imageUrl": "https://images-assets.nasa.gov/image/PIA25501/PIA25501~orig.jpg",
+    "significance": "Proven proof-of-concept for kinetic impactor planetary defense, demonstrating that humanity can alter the trajectory of a celestial object threatening Earth.",
+    "keyTakeaways": [
+      "Shortened Dimorphos's 11 hour 55 minute orbit by over 30 minutes, exceeding the success threshold by more than 25 times.",
+      "Ejected thousands of tons of rock and dust, amplifying the momentum transfer via recoil.",
+      "Observed in real-time by Italian LICIACube cubesat, Hubble, Webb, and terrestrial observatories."
+    ]
+  }
+]
